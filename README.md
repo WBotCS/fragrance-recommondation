@@ -1,5 +1,9 @@
 # Fragrance Recommendation System
 
+## YOU NEED TO DOWNLOAD THE MODEL FOR THE RECOMMENDATION TO WORK.
+
+Model Link ''
+
 ## Overview
 
 This project is a content-based fragrance recommendation system that suggests perfumes to users based on their preferences for notes, scent families, and gender. The system uses machine learning (specifically, cosine similarity) to find fragrances that are similar in their composition to the user's stated preferences.
