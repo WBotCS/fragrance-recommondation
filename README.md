@@ -2,7 +2,9 @@
 
 ## YOU NEED TO DOWNLOAD THE MODEL FOR THE RECOMMENDATION TO WORK.
 
-Model Link ''
+Model Link 'https://drive.google.com/drive/folders/1A3DNV9TXW-n3V9sTva3lfecdwz-yMG1u?usp=share_link'
+
+Download the model and put it in the project directory.
 
 ## Overview
 
