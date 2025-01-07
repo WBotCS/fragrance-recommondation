@@ -1,6 +1,6 @@
 # Fragrance Recommendation System
 
-## YOU NEED TO DOWNLOAD THE MODEL FOR THE RECOMMENDATION TO WORK.
+## YOU NEED TO DOWNLOAD THE MODEL FOR THE RECOMMENDATION SYSTEM TO WORK.
 
 Model Link 'https://drive.google.com/drive/folders/1A3DNV9TXW-n3V9sTva3lfecdwz-yMG1u?usp=share_link'
 
