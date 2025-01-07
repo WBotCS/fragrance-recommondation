@@ -1,4 +1,4 @@
-# Fragrance Recommendation System
+# Fragrance Recommendation System (SCENT COMPASS AI)
 
 ## YOU NEED TO DOWNLOAD THE MODEL FOR THE RECOMMENDATION SYSTEM TO WORK.
 
