@@ -1,0 +1,196 @@
+/* General Body Styling */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Landing Page Styling */
+#landingPage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    background-image: url('/static/assets/frag1.jpg'); /* Updated path */
+    background-size: cover;
+    background-position: center;
+}
+
+#landingPage h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 400;
+}
+#landingPage h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+#landingPage button {
+    padding: 10px 20px; /* Adjusted padding for better sizing */
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: auto; /* Prevents full-width button */
+    max-width: 200px; /* Optional: Limits the maximum width */
+    text-align: center;
+    font-family: "Playfair Display", serif;
+}
+
+#landingPage button:hover {
+    background-color: #333333;
+}
+/* Form Page Styling */
+/* Form Page Styling */
+/* Form Page Styling */
+#formPage {
+    min-height: 120vh; /* Adjusted height to make the page longer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    background-image: url('/static/assets/mesh-gradient-11.png'); /* Path to the new image */
+    background-size: cover;
+    background-position: center;
+    padding: 20px; /* Optional: Add padding for more space */
+}
+
+#preferencesForm {
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Optional: Limit the maximum width */
+    background: rgba(255, 255, 255, 0.8); /* Optional: Add a background for better readability */
+    padding: 20px; /* Add padding inside the form */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+#formPage h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    font-family: "Playfair Display", serif;
+    font-weight: 400; /* Set to match the thinner style */
+    letter-spacing: 0.5px; /* Optional: Slight spacing for elegance */
+    color: #000000; /* Adjust text color if needed */
+}
+
+#preferencesForm h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+    margin-top: 1rem;
+}
+
+/* Thinner, Italic Text for Specific Labels */
+label[for="gender"],
+label[for="notes"],
+label[for="families"] {
+    font-weight: 800;
+    font-style: italic;
+}
+
+select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Playfair Display", serif;
+}
+
+button:hover {
+    background-color: #333333;
+}
+
+/* Recommendations Styling */
+#recommendations {
+    width: 100%;
+    text-align: center; /* Center the text */
+    margin-top: 20px; /* Optional: Add margin for spacing */
+}
+
+#recommendations h2 {
+    font-size: 2rem;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+}
+
+/* Recommendation Panel Styles */
+.recommendation-panel {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px auto; /* Center-align the box */
+    width: 50%; /* Set the width to 50% of the container */
+    max-width: 400px; /* Optionally, limit the maximum width */
+    text-align: center; /* Adjust text alignment if needed */
+}
+
+.recommendation-panel h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+.recommendation-panel p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Select2 Styles */
+.select2-container {
+    width: 100% !important;
+}
+
+/* Mobile Friendly Adjustments */
+@media (max-width: 768px) {
+    #landingPage h1 {
+        font-size: 2rem;
+    }
+
+    #preferencesForm h1 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+
+    .recommendation-panel {
+        flex: 0 0 calc(50% - 20px); /* Adjust width for smaller screens */
+    }
+}
