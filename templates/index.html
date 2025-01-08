@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
     <div id="landingPage" style="background-image: url('/static/assets/frag1.jpg');">
@@ -19,10 +18,8 @@
         <h2>Find your perfect fragrance with our AI-powered recommendation system</h2>
         <button id="getStartedButton">Get Started</button>
     </div>
-
     <div id="formPage" style="background-image: url('/static/assets/mesh-gradient-11.png');">
         <h1>Find Your Perfect Fragrance</h1>
-
         <form id="preferencesForm">
             <label for="gender">Gender:</label>
             <select id="gender" name="gender">
@@ -37,6 +34,9 @@
             <label for="families">Favorite Families:</label>
             <select id="families" multiple="multiple"></select><br><br>
 
+            <label for="disliked_notes">Disliked Notes:</label>
+            <select id="disliked_notes" multiple="multiple"></select><br><br>
+
             <button type="button" id="submitButton">Get Recommendations</button>
         </form>
 
@@ -45,11 +45,11 @@
             <ul id="recommendationList"></ul>
         </div>
     </div>
-
     <script>
         document.getElementById('getStartedButton').addEventListener('click', function() {
             document.getElementById('formPage').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

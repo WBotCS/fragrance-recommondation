@@ -1,103 +1,42 @@
 $(document).ready(function() {
-    // Initialize Select2 for "Favorite Notes"
-    $('#notes').select2({
-        tags: true,
-        tokenSeparators: [',', ' '],
-        placeholder: "Enter or select notes",
-        ajax: {
-            url: '/select2-data',
-            dataType: 'json',
-            processResults: function (data) {
-                console.log("Notes data received:", data.notes); // Debugging line
-                return {
-                    results: data.notes
-                };
+    // Fetch data for Select2 from the server
+    fetch('/select2-data')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        },
-        createTag: function (params) {
-            var term = $.trim(params.term);
-            if (term === '') {
-                return null;
-            }
-            return {
-                id: term,
-                text: term,
-                newTag: true // add additional parameters
-            };
-        },
-        matcher: function(params, data) {
-            console.log("Search term:", params.term);
-            console.log("Data item:", data);
-        
-            if ($.trim(params.term) === '') {
-                console.log("No search term, returning data:", data);
-                return data;
-            }
-        
-            if (typeof data.text === 'undefined') {
-                console.log("No text property, skipping:", data);
-                return null;
-            }
-        
-            if (data.text.toLowerCase().startsWith(params.term.toLowerCase())) {
-                console.log("Match found:", data);
-                return $.extend({}, data, true);
-            }
-        
-            console.log("No match:", data);
-            return null;
-        }
-    });
+            return response.json();
+        })
+        .then(data => {
+            // Initialize Select2 for "Favorite Notes"
+            $('#notes').select2({
+                tags: true,
+                tokenSeparators: [',', ' '],
+                placeholder: "Enter or select notes",
+                data: data.notes
+            });
 
-    // Initialize Select2 for "Favorite Families"
-    $('#families').select2({
-        tags: true,
-        tokenSeparators: [',', ' '],
-        placeholder: "Enter or select families",
-        ajax: {
-            url: '/select2-data',
-            dataType: 'json',
-            processResults: function (data) {
-                console.log("Families data received:", data.families); // Debugging line
-                return {
-                    results: data.families
-                };
-            }
-        },
-        createTag: function (params) {
-            var term = $.trim(params.term);
-            if (term === '') {
-                return null;
-            }
-            return {
-                id: term,
-                text: term,
-                newTag: true // add additional parameters
-            };
-        },
-        matcher: function(params, data) {
-            console.log("Search term:", params.term);
-            console.log("Data item:", data);
-        
-            if ($.trim(params.term) === '') {
-                console.log("No search term, returning data:", data);
-                return data;
-            }
-        
-            if (typeof data.text === 'undefined') {
-                console.log("No text property, skipping:", data);
-                return null;
-            }
-        
-            if (data.text.toLowerCase().startsWith(params.term.toLowerCase())) {
-                console.log("Match found:", data);
-                return $.extend({}, data, true);
-            }
-        
-            console.log("No match:", data);
-            return null;
-        }
-    });
+            // Initialize Select2 for "Favorite Families"
+            $('#families').select2({
+                tags: true,
+                tokenSeparators: [',', ' '],
+                placeholder: "Enter or select families",
+                data: data.families
+            });
+
+            // Initialize Select2 for "Disliked Notes"
+            $('#disliked_notes').select2({
+                tags: true,
+                tokenSeparators: [',', ' '],
+                placeholder: "Enter or select disliked notes",
+                data: data.notes // Use the same data as "Favorite Notes"
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching Select2 data:", error);
+            // Display an error message to the user
+            alert("Error loading data for the form. Please check the console for details.");
+        });
 
     const submitButton = document.getElementById("submitButton");
     const preferencesForm = document.getElementById("preferencesForm");
@@ -105,17 +44,19 @@ $(document).ready(function() {
 
     submitButton.addEventListener("click", () => {
         const gender = document.getElementById("gender").value;
-        const selectedNotes = $('#notes').select2('data').map(item => item.id);
-        const selectedFamilies = $('#families').select2('data').map(item => item.id);
+        const selectedNotes = $('#notes').select2('data').map(item => item.text);
+        const selectedFamilies = $('#families').select2('data').map(item => item.text);
+        const selectedDislikedNotes = $('#disliked_notes').select2('data').map(item => item.text);
 
         console.log("Selected Notes:", selectedNotes);
         console.log("Selected Families:", selectedFamilies);
+        console.log("Selected Disliked Notes:", selectedDislikedNotes);
 
         const formData = {
             gender: gender,
             preferred_notes: selectedNotes,
-            preferred_families: selectedFamilies
-            // Add disliked_notes if needed
+            preferred_families: selectedFamilies,
+            disliked_notes: selectedDislikedNotes
         };
 
         fetch('/recommend', {
@@ -125,7 +66,10 @@ $(document).ready(function() {
             },
             body: JSON.stringify(formData)
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log("Response status:", response.status);
+            return response.json();
+        })
         .then(recommendations => {
             console.log("Recommendations from server:", recommendations);
 
@@ -141,40 +85,27 @@ $(document).ready(function() {
                     console.log("Processing fragrance:", fragrance);
                     const panel = document.createElement("div");
                     panel.className = "recommendation-panel";
-                
-                    // Format the fragrance name
                     const formattedName = formatText(fragrance['Fragrance Name']);
-                
-                    // Format the brand name
                     const formattedBrand = formatText(fragrance['Brand']);
-                
                     const name = document.createElement("h3");
-                    name.textContent = formattedName; // Use the formatted fragrance name
+                    name.textContent = formattedName;
                     const brand = document.createElement("p");
-                    brand.textContent = `by ${formattedBrand}`; // Use the formatted brand name
-                
+                    brand.textContent = `by ${formattedBrand}`;
                     panel.appendChild(name);
                     panel.appendChild(brand);
                     recommendationList.appendChild(panel);
                 });
-                
             }
         })
         .catch(error => {
             console.error("Error:", error);
         });
     });
+
+    function formatText(text) {
+        return text
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
 });
-
-
-
-
-// function formatText(text) {
-//     return text.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-// }
-function formatText(text) {
-    return text
-        .split('-') // Split the text by "-"
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
-        .join(' '); // Join the words back with a space
-}
