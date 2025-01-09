@@ -41,10 +41,137 @@
         </form>
 
         <div id="recommendations">
-            <h2>Recommendations:</h2>
+            <h2>Our Recommendations:</h2>
             <ul id="recommendationList"></ul>
         </div>
     </div>
+        <!-- Floating Action Button -->
+    <button id="fab" class="fab">?</button>
+
+
+    <!-- Pop-up Modal -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Fragrance Notes Guide</h2>
+            <p>Here's a quick guide to common fragrance note categories:</p>
+            <ul>
+                <li>
+                    <b>Woody Notes</b>: Earthy and warm scents.
+                    <ul>
+                        <li><b>Sandalwood</b>: Creamy, soft, rich, woody note.</li>
+                        <li><b>Cedarwood</b>: Dry, woody, slightly sharp and balsamic.</li>
+                        <li><b>Vetiver</b>: Earthy, woody, smoky, with hints of leather and grass.</li>
+                        <li><b>Patchouli</b>: Earthy, musky, sweet, and spicy. Often used in chypre fragrances.</li>
+                        <li><b>Oakmoss</b>: Earthy, mossy, damp, and forest-like.</li>
+                        <li><b>Guaiac Wood</b>: Smoky, tar-like, with a sweet, rosy undertone.</li>
+                        <li><b>Agarwood (Oud)</b>: Complex, resinous, woody, and animalic. Highly prized in Oriental fragrances.</li>
+                        <li><b>Pine</b>: Fresh, resinous, coniferous, and woody.</li>
+                        <li><b>Fir</b>: Balsamic, resinous, woody, and slightly sweet.</li>
+                        <li><b>Cypress</b>: Aromatic, woody, and slightly spicy, reminiscent of pine.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Floral Notes</b>: Sweet and flowery scents.
+                    <ul>
+                        <li><b>Rose</b>: Romantic, classic floral note, ranging from fresh to powdery.</li>
+                        <li><b>Jasmine</b>: Intensely floral, sweet, and slightly animalic.</li>
+                        <li><b>Lily</b>: Fresh, green, and heady floral scent.</li>
+                        <li><b>Lavender</b>: Aromatic, herbaceous, and calming floral note.</li>
+                        <li><b>Ylang-Ylang</b>: Exotic, sweet, and slightly fruity floral.</li>
+                        <li><b>Tuberose</b>: Powerful, creamy, and narcotic white floral.</li>
+                        <li><b>Gardenia</b>: Rich, heady, and sweet white floral.</li>
+                        <li><b>Peony</b>: Fresh, soft, and slightly rosy floral.</li>
+                        <li><b>Magnolia</b>: Creamy, lemony, and sweet floral.</li>
+                        <li><b>Freesia</b>: Delicate, airy, and peppery floral.</li>
+                        <li><b>Iris</b>: Powdery, earthy, and violet-like floral.</li>
+                        <li><b>Orchid</b>: Exotic, powdery, and slightly spicy floral.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Fresh Notes</b>: Clean and crisp scents.
+                    <ul>
+                        <li><b>Citrus Notes</b>:
+                            <ul>
+                                <li><b>Lemon</b>: Zesty, bright, and refreshing.</li>
+                                <li><b>Orange</b>: Sweet, juicy, and uplifting.</li>
+                                <li><b>Bergamot</b>: Citrusy with a bitter, aromatic edge.</li>
+                                <li><b>Grapefruit</b>: Tart, tangy, and refreshing.</li>
+                                <li><b>Mandarin</b>: Sweet, juicy, and slightly spicy.</li>
+                                <li><b>Lime</b>: Zesty, sour, and refreshing.</li>
+                            </ul>
+                        </li>
+                        <li><b>Green Notes</b>:
+                            <ul>
+                                <li><b>Galbanum</b>: Sharp, green, and slightly bitter.</li>
+                                <li><b>Vetiver</b>: Earthy, grassy, and slightly smoky (often considered a woody note as well).</li>
+                                <li><b>Fig Leaf</b>: Green, slightly sweet, and coconut-like.</li>
+                                <li><b>Basil</b>: Herbaceous, green, and slightly spicy.</li>
+                                <li><b>Mint</b>: Refreshing, cool, and herbaceous.</li>
+                                <li><b>Tea Leaves</b>: Aromatic, green, and slightly bitter.</li>
+                            </ul>
+                        </li>
+                        <li><b>Aquatic Notes</b>:
+                            <ul>
+                                <li><b>Marine/Sea Notes</b>: Salty, breezy, and reminiscent of the ocean.</li>
+                                <li><b>Water Notes</b>: Fresh, clean, and evocative of rain or dew.</li>
+                                <li><b>Ozonic Notes</b>: Airy, light, and reminiscent of the smell after a thunderstorm.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Oriental Notes</b>: Exotic and spicy scents.
+                    <ul>
+                        <li><b>Vanilla</b>: Sweet, creamy, and comforting.</li>
+                        <li><b>Amber</b>: Warm, resinous, and slightly sweet.</li>
+                        <li><b>Musk</b>: Animalic, sensual, and earthy (can also be powdery or clean depending on the type).</li>
+                        <li><b>Frankincense</b>: Balsamic, resinous, and slightly citrusy.</li>
+                        <li><b>Myrrh</b>: Balsamic, resinous, and slightly bitter.</li>
+                        <li><b>Opoponax</b>: Sweet, balsamic, and resinous.</li>
+                        <li><b>Benzoin</b>: Sweet, resinous, and vanilla-like.</li>
+                        <li><b>Labdanum</b>: Leathery, amber-like, and slightly sweet.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Spicy Notes</b>:
+                    <ul>
+                        <li><b>Cinnamon</b>: Warm, sweet, and spicy.</li>
+                        <li><b>Clove</b>: Pungent, spicy, and slightly sweet.</li>
+                        <li><b>Black Pepper</b>: Sharp, spicy, and woody.</li>
+                        <li><b>Ginger</b>: Spicy, warm, and slightly citrusy.</li>
+                        <li><b>Cardamom</b>: Aromatic, spicy, and slightly sweet.</li>
+                        <li><b>Nutmeg</b>: Warm, spicy, and nutty.</li>
+                        <li><b>Coriander</b>: Spicy, herbaceous, and slightly citrusy.</li>
+                        <li><b>Saffron</b>: Earthy, leathery, and slightly bitter.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Fruity Notes</b>:
+                    <ul>
+                        <li><b>Apple</b>: Crisp, sweet, and slightly tart.</li>
+                        <li><b>Peach</b>: Sweet, juicy, and velvety.</li>
+                        <li><b>Berry Notes</b> (Strawberry, Raspberry, Blackberry, etc.): Sweet, tart, and juicy.</li>
+                        <li><b>Melon</b>: Refreshing, watery, and sweet.</li>
+                        <li><b>Pear</b>: Juicy, sweet, and slightly floral.</li>
+                        <li><b>Pineapple</b>: Tropical, sweet, and tangy.</li>
+                        <li><b>Apricot</b>: Sweet, velvety, and slightly floral.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Gourmand Notes</b>:
+                    <ul>
+                        <li><b>Chocolate</b>: Rich, dark, and often slightly bitter.</li>
+                        <li><b>Caramel</b>: Buttery, sugary, and sweet.</li>
+                        <li><b>Coffee</b>: Dark, roasted, and aromatic.</li>
+                        <li><b>Almond</b>: Nutty, slightly sweet, and marzipan-like.</li>
+                        <li><b>Honey</b>: Sweet, syrupy, and warm.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
     <script>
         document.getElementById('getStartedButton').addEventListener('click', function() {
             document.getElementById('formPage').scrollIntoView({ behavior: 'smooth' });

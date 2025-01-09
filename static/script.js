@@ -108,4 +108,22 @@ $(document).ready(function() {
             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
             .join(' ');
     }
+    // Floating Action Button and Pop-up Modal
+    const fab = document.getElementById('fab');
+    const popup = document.getElementById('popup');
+    const close = document.getElementsByClassName('close')[0];
+
+    fab.onclick = function() {
+        popup.style.display = 'block';
+    }
+
+    close.onclick = function() {
+        popup.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == popup) {
+            popup.style.display = 'none';
+        }
+    }
 });
