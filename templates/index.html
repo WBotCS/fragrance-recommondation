@@ -8,11 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
+    <!-- Your existing HTML content -->
     <div id="landingPage" style="background-image: url('/static/assets/frag1.jpg');">
         <h1>Welcome to Scent Compass AI</h1>
         <h2>Find your perfect fragrance with our AI-powered recommendation system</h2>
@@ -45,13 +47,12 @@
             <ul id="recommendationList"></ul>
         </div>
     </div>
-        <!-- Floating Action Button -->
+    <!-- Floating Action Button -->
     <button id="fab" class="fab">?</button>
-
 
     <!-- Pop-up Modal -->
     <div id="popup" class="popup">
-        <div class="popup-content">
+        <div class="popup-content eb-garamond-guide">
             <span class="close">&times;</span>
             <h2>Fragrance Notes Guide</h2>
             <p>Here's a quick guide to common fragrance note categories:</p>
@@ -170,7 +171,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div>  
     
     <script>
         document.getElementById('getStartedButton').addEventListener('click', function() {
