@@ -17,24 +17,28 @@ html, body {
     background-image: url('/static/assets/frag1.jpg'); /* Updated path */
     background-size: cover;
     background-position: center;
+    padding: 20px; /* Added padding for better spacing */
 }
 
 #landingPage h1 {
-    font-size: 3rem;
+    font-size: 2.5rem; /* Adjusted size for mobile */
     margin-bottom: 20px;
     color: #ffffff;
     font-weight: 400;
+    text-align: center;
 }
+
 #landingPage h2 {
-    font-size: 1rem;
+    font-size: 1.2rem; /* Adjusted for mobile */
     margin-bottom: 10px;
     margin-top: 0px;
     color: #ffffff;
     font-weight: 400;
+    text-align: center;
 }
 
 #landingPage button {
-    padding: 10px 20px; /* Adjusted padding for better sizing */
+    padding: 12px 24px; /* Adjusted padding for better sizing */
     font-size: 1rem;
     color: #fff;
     background-color: #000000;
@@ -42,8 +46,8 @@ html, body {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
-    width: auto; /* Prevents full-width button */
-    max-width: 200px; /* Optional: Limits the maximum width */
+    width: 80%; /* Adjusted to fit smaller screens */
+    max-width: 250px;
     text-align: center;
     font-family: "Playfair Display", serif;
 }
@@ -51,47 +55,46 @@ html, body {
 #landingPage button:hover {
     background-color: #333333;
 }
-/* Form Page Styling */
 
+/* Form Page Styling */
 #formPage {
-    min-height: 120vh; /* Adjusted height to make the page longer */
+    min-height: 120vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    background-image: url('/static/assets/mesh-gradient-11.png'); /* Path to the new image */
+    background-image: url('/static/assets/mesh-gradient-11.png');
     background-size: cover;
     background-position: center;
-    padding: 20px; /* Optional: Add padding for more space */
+    padding: 20px;
 }
 
 #preferencesForm {
-    width: 80%; /* Adjust width as needed */
-    max-width: 600px; /* Optional: Limit the maximum width */
-    background: rgba(255, 255, 255, 0.8); /* Optional: Add a background for better readability */
-    padding: 20px; /* Add padding inside the form */
-    border-radius: 10px; /* Optional: Add rounded corners */
+    width: 90%; /* Adjusted to fill screen width */
+    max-width: 500px; /* Max width for large screens */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 #formPage h1 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem; /* Adjusted size */
     margin-top: 20px;
     margin-bottom: 80px;
     font-family: "Playfair Display", serif;
-    font-weight: 400; /* Set to match the thinner style */
-    letter-spacing: 0.5px; /* Optional: Slight spacing for elegance */
-    color: #000000; /* Adjust text color if needed */
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: #000000;
 }
 
 #preferencesForm h1 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 20px;
     font-family: "Playfair Display", serif;
     font-weight: 400;
-    
 }
 
 label {
@@ -100,15 +103,6 @@ label {
     margin: 10px 0 5px;
     color: #333;
     margin-top: 1rem;
-}
-
-/* Thinner, Italic Text for Specific Labels */
-label[for="gender"],
-label[for="notes"],
-label[for="families"],
-label[for="disliked_notes"] {
-    font-weight: 600;
-    font-family: "Playfair Display", serif;
 }
 
 select, button {
@@ -136,8 +130,8 @@ button:hover {
 /* Recommendations Styling */
 #recommendations {
     width: 100%;
-    text-align: center; /* Center the text */
-    margin-top: 20px; /* Optional: Add margin for spacing */
+    text-align: center;
+    margin-top: 20px;
 }
 
 #recommendations h2 {
@@ -153,10 +147,10 @@ button:hover {
     padding: 15px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 10px auto; /* Center-align the box */
-    width: 50%; /* Set the width to 50% of the container */
-    max-width: 400px; /* Optionally, limit the maximum width */
-    text-align: center; /* Adjust text alignment if needed */
+    margin: 10px auto;
+    width: 90%; /* Adjusted to fit smaller screens */
+    max-width: 400px;
+    text-align: center;
 }
 
 .recommendation-panel h3 {
@@ -176,83 +170,215 @@ button:hover {
     width: 100% !important;
 }
 
+
+
+/* Apply EB Garamond font to the guide section */
+.eb-garamond-guide {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;  /* or 40px depending on size */
+    height: 50px; /* or 40px depending on size */
+    background-color: #020202;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24px; /* Adjust the font size */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;         /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center;     /* Center content vertically */
+}
+
+/* Pop-up Modal */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Sticky feedback button */
+#feedback-button {
+    position: fixed;
+    right: 10px;
+    bottom: 35%;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: rotate(-90deg);
+    transform-origin: right center;
+}
+
+/* Feedback Form Container Adjustments */
+#feedback-form {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400; 
+    font-style: normal;
+    border-radius: 15px;
+    position: fixed;
+    right: 10px;
+    bottom: 40%;
+    background-color: white;
+    padding: 15px;
+    width: 300px; /* Set the default width for larger screens */
+    max-width: 80%; /* Adjusts for smaller screens */
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    display: none;
+    transition: width 0.3s ease-in-out; /* Optional: Smooth transition */
+}
+
+#feedback-form h3 {
+    margin-top: 0;
+}
+
+#satisfaction-options {
+    margin: 10px 0;
+}
+
+#satisfaction-options label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.satisfaction-level {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}
+
+#feedback-form textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    #feedback-form {
+        width: 50%; /* Make the form 90% of the screen width on mobile */
+        max-width: 400px; /* Limit maximum width */
+        bottom: 30%; /* Adjust the bottom positioning */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+
+    #feedback-button {
+        right: 10px; /* Keep it right aligned */
+        bottom: 25%; /* Move the button higher for better visibility */
+        padding: 8px 15px; /* Smaller padding to reduce the size */
+        font-size: 14px; /* Reduce font size for mobile */
+        width: auto; /* Ensure the width is based on content */
+        height: auto; /* Adjust height accordingly */
+        transform: rotate(270deg); /* Remove rotation on mobile for better alignment */
+    }
+}
+
 /* Mobile Friendly Adjustments */
 @media (max-width: 768px) {
     #landingPage h1 {
-        font-size: 2rem;
+        font-size: 2rem; /* Adjust for small screens */
+    }
+
+    #landingPage h2 {
+        font-size: 1rem;
     }
 
     #preferencesForm h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     button {
         font-size: 0.9rem;
+        padding: 12px 20px;
     }
 
+    .fab {
+        bottom: 15px; /* Slightly adjust bottom position */
+        right: 10px;  /* Adjust right position */
+        width: 40px;  /* Smaller button size */
+        height: 40px; /* Maintain aspect ratio */
+        font-size: 20px; /* Smaller icon/text */
+    }
+
+    #feedback-button {
+        bottom: 30%; /* Adjusted position for mobile */
+        font-size: 14px; /* Smaller font size */
+    }
+
+    #feedback-form {
+        width: 250px; /* Adjust width for mobile */
+        bottom: 35%; /* Slightly higher position */
+    }
+
+    .popup-content {
+        width: 80%; /* Adjust for mobile */
+        max-width: 400px;
+        margin: 20% auto;
+    }
+    #recommendations {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically on mobile */
+        justify-content: center; /* Center vertically */
+        align-items: center;     /* Center horizontally */
+    }
+
+    /*mobile recommendation panel*/
     .recommendation-panel {
-        flex: 0 0 calc(50% - 20px); /* Adjust width for smaller screens */
+        width: 90%; /* Adjust the width to be 90% on smaller screens */
+        max-width: 350px; /* Optional: Limit max-width for smaller screens */
+        margin-top: 10px;  /* Optional: Add space between recommendation panels */
+
     }
+
 }
-/* Apply EB Garamond font to the guide section */
-    .eb-garamond-guide {
-        font-family: "EB Garamond", serif;
-        font-optical-sizing: auto;
-        font-weight: 400; /* Adjust the weight as needed */
-    }
-  
-  /* Floating Action Button */
-  .fab {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background-color: #020202;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-  }
-  
-  /* Pop-up Modal */
-  .popup {
-      display: none;
-      position: fixed;
-      z-index: 1001;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .popup-content {
-      background-color: white;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-  }

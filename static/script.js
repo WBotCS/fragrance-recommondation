@@ -127,3 +127,23 @@ $(document).ready(function() {
         }
     }
 });
+
+function toggleFeedbackForm() {
+    const form = document.getElementById("feedback-form");
+    form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+}
+
+function submitFeedback() {
+    // Get selected satisfaction level
+    const satisfaction = document.querySelector('input[name="satisfaction"]:checked');
+    const comment = document.getElementById("feedback-comment").value;
+
+    if (satisfaction) {
+        alert(`Thank you for your feedback!\nSatisfaction Level: ${satisfaction.value}\nComment: ${comment}`);
+    } else {
+        alert("Please select your satisfaction level.");
+    }
+
+    // Hide the form after submission
+    document.getElementById("feedback-form").style.display = "none";
+}

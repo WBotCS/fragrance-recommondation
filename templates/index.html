@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
@@ -46,7 +47,7 @@
             <h2>Our Recommendations:</h2>
             <ul id="recommendationList"></ul>
         </div>
-    </div>
+
     <!-- Floating Action Button -->
     <button id="fab" class="fab">?</button>
 
@@ -172,7 +173,33 @@
             </ul>
         </div>
     </div>  
-    
+    <!-- Feedback Button -->
+    <div id="feedback-button" onclick="toggleFeedbackForm()">
+        Feedback
+    </div>
+
+    <!-- Feedback Form -->
+    <div id="feedback-form" class="hidden">
+        <h3>Feedback Form</h3>
+
+        <!-- Satisfaction Level -->
+        <label for="satisfaction-level" style="font-family: 'Open Sans', sans-serif;">Satisfaction Level:</label>
+        <div id="satisfaction-options">
+            <label><input type="radio" name="satisfaction" value="Very Satisfied"> Very Satisfied</label>
+            <label><input type="radio" name="satisfaction" value="Satisfied"> Satisfied</label>
+            <label><input type="radio" name="satisfaction" value="Neutral"> Neutral</label>
+            <label><input type="radio" name="satisfaction" value="Dissatisfied"> Dissatisfied</label>
+            <label><input type="radio" name="satisfaction" value="Very Dissatisfied"> Very Dissatisfied</label>
+        </div>
+        
+
+        <!-- Comment Box -->
+        <textarea id="feedback-comment" placeholder="Your feedback..."></textarea>
+        
+        <!-- Submit Button -->
+        <button onclick="submitFeedback()">Submit</button>
+    </div>
+
     <script>
         document.getElementById('getStartedButton').addEventListener('click', function() {
             document.getElementById('formPage').scrollIntoView({ behavior: 'smooth' });
