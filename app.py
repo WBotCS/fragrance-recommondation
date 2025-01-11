@@ -52,6 +52,10 @@ def get_recommendations(user_preferences, disliked_notes_indices, df, similarity
 def index():
     return render_template('index.html', feature_columns=feature_columns)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/recommend', methods=['POST'])
 def recommend():
     user_input = request.get_json()
