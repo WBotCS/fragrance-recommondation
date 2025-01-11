@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='about-style.css') }}">
+</head>
+<body>
+    <a href="/" class="home-link">Home</a>
+    <div class="container">
+        <div class="section story-section">
+            <div class="story-text">
+                <h1>Our Story</h1>
+                <p>The idea for Scent Compass AI was inspired by my passion for fragrances, 
+                    fascination with AI, and love for elegant UI design. 
+                    Why not combine them all to create something truly innovative?</p>
+                <!-- Add more content about your story -->
+            </div>
+            <img src="/static/assets/bottle.jpg" alt="Our Story" class="story-image">
+        </div>
+        <div class="section details-section">
+            <div class="details-text">
+                <h1>Details</h1>
+                <p>This website leverages advanced AI algorithms to recommend the best fragrances tailored to your preferences. 
+                    It collects user input through a detailed preferences form, which includes factors such as gender, preferred fragrance notes, and disliked notes. 
+                    This data is then processed by our AI model, which has been trained on a vast dataset of fragrance profiles and user preferences.
+                    The model uses machine learning techniques to analyze patterns and correlations within the data, allowing it to make accurate and personalized fragrance recommendations.
+                    The training process involves continuous learning and refinement, ensuring that the model stays up-to-date with the latest trends and user feedback.
+                    By combining the power of AI with a user-friendly interface, we aim to provide a seamless and enjoyable experience for finding your perfect scent.</p>
+            </div>
+        </div>
+        <a href="https://wbotcs.netlify.app" class="contact-button" target="_blank">Contact</a>
+    </div>
+</body>
+</html>

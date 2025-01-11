@@ -1,0 +1,85 @@
+body {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(235, 225, 214);
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative; /* Ensure the container has relative positioning */
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px 0;
+    padding-top: 3rem; /* Add padding to move the sections down */
+    
+}
+
+.story-section {
+    flex-direction: row-reverse; /* Text on the left, image on the right */
+    font-family: "Playfair Display", serif;
+}
+
+.details-section {
+    flex-direction: column; /* Center the text */
+    align-items: center; /* Center the text horizontally */
+    text-align: center; /* Center the text content */
+    font-family: "Playfair Display", serif;
+}
+
+.story-image {
+    width: 40%; /* Adjust the width as needed */
+    max-height: 300px; /* Adjust the height as needed */
+    object-fit: cover; /* Maintain aspect ratio */
+    margin-right: 80px; /* Move the image to the left by adding right margin */
+
+}
+
+.story-text, .details-text {
+    width: 60%; /* Adjust the width as needed */
+    padding: 20px;
+    font-family: "Playfair Display", serif; /* Apply the font-family */
+}
+
+/* Home Link Styling */
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: "Playfair Display", serif;
+}
+
+/* Contact Button Styling */
+.contact-button {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: "Playfair Display", serif;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.contact-button:hover {
+    background-color: rgb(55, 54, 54);
+    color: white;
+}
