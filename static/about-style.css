@@ -10,7 +10,6 @@ body {
     width: 90%;
     margin: 0 auto;
     max-width: 1200px;
-    position: relative; /* Ensure the container has relative positioning */
 }
 
 .section {
@@ -18,34 +17,32 @@ body {
     align-items: center;
     justify-content: space-between;
     margin: 50px 0;
-    padding-top: 3rem; /* Add padding to move the sections down */
-    
+    padding-top: 3rem;
 }
 
 .story-section {
-    flex-direction: row-reverse; /* Text on the left, image on the right */
+    flex-direction: row-reverse;
     font-family: "Playfair Display", serif;
 }
 
 .details-section {
-    flex-direction: column; /* Center the text */
-    align-items: center; /* Center the text horizontally */
-    text-align: center; /* Center the text content */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     font-family: "Playfair Display", serif;
 }
 
 .story-image {
-    width: 40%; /* Adjust the width as needed */
-    max-height: 300px; /* Adjust the height as needed */
-    object-fit: cover; /* Maintain aspect ratio */
-    margin-right: 80px; /* Move the image to the left by adding right margin */
-
+    width: 40%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-right: 80px;
 }
 
 .story-text, .details-text {
-    width: 60%; /* Adjust the width as needed */
+    width: 60%;
     padding: 20px;
-    font-family: "Playfair Display", serif; /* Apply the font-family */
+    font-family: "Playfair Display", serif;
 }
 
 /* Home Link Styling */
@@ -60,26 +57,72 @@ body {
     font-family: "Playfair Display", serif;
 }
 
-/* Contact Button Styling */
 .contact-button {
-    display: inline-block;
-    margin: 20px 0;
-    padding: 10px 20px;
+    display: block;
+    margin: 20px auto;
+    padding: 6px 12px; /* Smaller padding */
     background-color: transparent;
     color: black;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 0.9rem; /* Smaller font size */
     font-family: "Playfair Display", serif;
-    border: 2px solid black;
+    border: 1px solid black; /* Thinner border */
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
+    width: 150px; /* Fixed width for consistency */
 }
+
 
 .contact-button:hover {
     background-color: rgb(55, 54, 54);
     color: white;
+}
+
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .story-section, .details-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .story-image {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .story-text, .details-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-link {
+        font-size: 1.2rem;
+    }
+
+    .contact-button {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-section, .details-section {
+        padding-top: 1rem;
+    }
+
+    .story-image {
+        max-height: 200px;
+    }
+
+    .home-link {
+        font-size: 1rem;
+    }
+
+    .contact-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
 }
