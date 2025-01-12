@@ -1,17 +1,47 @@
-from flask import Flask, request, jsonify, render_template
+import boto3
+import os
 import joblib
 import pandas as pd
 import numpy as np
+from flask import Flask, request, jsonify, render_template
 from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
 
+# S3 Configuration
+S3_BUCKET = 'mymodelfragbucket'
+MODEL_FILES = {
+    'feature_columns': 'feature_columns.joblib',
+    'fragrance_data': 'fragrance_data.joblib',
+    'fragrance_features': 'fragrance_features.joblib',
+    'label_encoder': 'label_encoder.joblib',
+    'similarity_matrix': 'similarity_matrix.joblib'
+}
+LOCAL_MODEL_PATH = 'models/'  # Local directory to save the model files
+
+def download_model_files_from_s3():
+    s3 = boto3.client('s3')
+    if not os.path.exists(LOCAL_MODEL_PATH):
+        os.makedirs(LOCAL_MODEL_PATH)
+    
+    for file_name, s3_key in MODEL_FILES.items():
+        local_file_path = os.path.join(LOCAL_MODEL_PATH, f"{file_name}.joblib")
+        if not os.path.exists(local_file_path):
+            print(f"Downloading {file_name} from S3...")
+            s3.download_file(S3_BUCKET, s3_key, local_file_path)
+            print(f"{file_name} downloaded successfully.")
+        else:
+            print(f"{file_name} already exists locally.")
+
+# Download model files from S3
+download_model_files_from_s3()
+
 # Load model data
-similarity_matrix = joblib.load("similarity_matrix.joblib")
-feature_columns = joblib.load("feature_columns.joblib")
-fragrance_features = joblib.load("fragrance_features.joblib")
-df = joblib.load("fragrance_data.joblib")
-label_encoder = joblib.load("label_encoder.joblib")
+similarity_matrix = joblib.load(os.path.join(LOCAL_MODEL_PATH, "similarity_matrix.joblib"))
+feature_columns = joblib.load(os.path.join(LOCAL_MODEL_PATH, "feature_columns.joblib"))
+fragrance_features = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_features.joblib"))
+df = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_data.joblib"))
+label_encoder = joblib.load(os.path.join(LOCAL_MODEL_PATH, "label_encoder.joblib"))
 
 # Recommendation function
 def get_recommendations(user_preferences, disliked_notes_indices, df, similarity_matrix, fragrance_features, top_n=5):
