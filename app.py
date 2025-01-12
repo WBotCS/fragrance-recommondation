@@ -1,5 +1,5 @@
-import boto3
 import os
+import boto3
 import joblib
 import pandas as pd
 import numpy as np
