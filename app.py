@@ -78,6 +78,7 @@ def get_recommendations(user_preferences, disliked_notes_indices, df, similarity
     print("----- Exiting get_recommendations -----")
     return recommendations
 
+
 @app.route('/')
 def index():
     return render_template('index.html', feature_columns=feature_columns)
@@ -88,66 +89,64 @@ def about():
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
-    try:
-        user_input = request.get_json()
-        print("User Input:", user_input)
+    user_input = request.get_json()
+    print("User Input:", user_input)
 
-        # Transform user input into feature vector
-        user_preferences = np.zeros(len(feature_columns))
-        print("Initialized User Preferences:", user_preferences)
+    # Transform user input into feature vector
+    user_preferences = np.zeros(len(feature_columns))
+    print("Initialized User Preferences:", user_preferences)
 
-        # Handle Gender
-        gender_index = feature_columns.index('Gender')
-        user_preferences[gender_index] = int(user_input['gender'])
-        print("User Preferences after Gender:", user_preferences)
+    # Handle Gender
+    gender_index = feature_columns.index('Gender')
+    user_preferences[gender_index] = int(user_input['gender'])
+    print("User Preferences after Gender:", user_preferences)
 
     # Handle preferred notes and families
-        print("User Input Notes:", user_input['preferred_notes'])
-        print("User Input Families:", user_input['preferred_families'])
-    
-        for note in user_input['preferred_notes']:
+    print("User Input Notes:", user_input['preferred_notes'])
+    print("User Input Families:", user_input['preferred_families'])
+
+    for note in user_input['preferred_notes']:
+        note_with_prefix = "note_" + note.lower()
+        if note_with_prefix in feature_columns:
+            print("Adding note:", note_with_prefix)
+            user_preferences[feature_columns.index(note_with_prefix)] = 1
+        else:
+            print(f"Warning: Note '{note}' not found in feature columns.")
+
+    for family in user_input['preferred_families']:
+        family_with_prefix = "family_" + family.lower()
+        if family_with_prefix in feature_columns:
+            print("Adding family:", family_with_prefix)
+            user_preferences[feature_columns.index(family_with_prefix)] = 1
+        else:
+            print(f"Warning: Family '{family}' not found in feature columns.")
+
+    print("User Preferences after Notes/Families:", user_preferences)
+
+    # Handle disliked notes
+    disliked_notes_indices = []
+    if 'disliked_notes' in user_input and user_input['disliked_notes']:
+        for note in user_input['disliked_notes']:
             note_with_prefix = "note_" + note.lower()
             if note_with_prefix in feature_columns:
-                print("Adding note:", note_with_prefix)
-                user_preferences[feature_columns.index(note_with_prefix)] = 1
+                print("Adding disliked note:", note_with_prefix)
+                disliked_notes_indices.append(feature_columns.index(note_with_prefix))
             else:
-                print(f"Warning: Note '{note}' not found in feature columns.")
-    
-        for family in user_input['preferred_families']:
-            family_with_prefix = "family_" + family.lower()
-            if family_with_prefix in feature_columns:
-                print("Adding family:", family_with_prefix)
-                user_preferences[feature_columns.index(family_with_prefix)] = 1
-            else:
-                print(f"Warning: Family '{family}' not found in feature columns.")
-    
-        print("User Preferences after Notes/Families:", user_preferences)
-    
-        # Handle disliked notes
-        disliked_notes_indices = []
-        if 'disliked_notes' in user_input and user_input['disliked_notes']:
-            for note in user_input['disliked_notes']:
-                note_with_prefix = "note_" + note.lower()
-                if note_with_prefix in feature_columns:
-                    print("Adding disliked note:", note_with_prefix)
-                    disliked_notes_indices.append(feature_columns.index(note_with_prefix))
-                else:
-                    print(f"Warning: Disliked note '{note}' not found in feature columns.")
-        else:
-            disliked_notes_indices = None
-            print("No disliked notes provided.")
-    
-        print("User Preferences after Disliked Notes:", user_preferences)
-        print("Disliked Notes Indices:", disliked_notes_indices)
+                print(f"Warning: Disliked note '{note}' not found in feature columns.")
+    else:
+        disliked_notes_indices = None
+        print("No disliked notes provided.")
+
+    print("User Preferences after Disliked Notes:", user_preferences)
+    print("Disliked Notes Indices:", disliked_notes_indices)
 
     # Get recommendations
+    recommendations = get_recommendations(user_preferences, disliked_notes_indices, df, similarity_matrix, fragrance_features, top_n=5)
 
-        recommendations = get_recommendations(user_preferences, disliked_notes_indices, df, similarity_matrix, fragrance_features)
+    print("Recommendations:", recommendations)
 
-        return jsonify(recommendations.to_dict(orient='records'))
-    except Exception as e:
-        print(f"Error in recommend route: {e}")
-        return jsonify({"error": "An error occurred"}), 500
+    # Convert recommendations to JSON and return
+    return jsonify(recommendations.to_dict(orient='records'))
 
 
 @app.route('/select2-data')
