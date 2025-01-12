@@ -45,15 +45,16 @@ fragrance_features = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_featu
 df = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_data.joblib"))
 label_encoder = joblib.load(os.path.join(LOCAL_MODEL_PATH, "label_encoder.joblib"))
 
-# Recommendation function
 def get_recommendations(user_preferences, disliked_notes_indices, df, similarity_matrix, fragrance_features, top_n=5):
     print("----- Inside get_recommendations -----")
     print("User Preferences:", user_preferences)
 
+    # Calculate cosine similarity (this might be a bottleneck)
     user_similarity = cosine_similarity(user_preferences.reshape(1, -1), fragrance_features)
     print("User Similarity:", user_similarity)
 
-    sorted_indices = np.argsort(user_similarity[0])[::-1]
+    # Sort indices by similarity (this could also be optimized)
+    sorted_indices = np.argsort(user_similarity[0])[::-1] 
     print("Sorted Indices:", sorted_indices)
 
     filtered_indices = []
@@ -79,7 +80,6 @@ def get_recommendations(user_preferences, disliked_notes_indices, df, similarity
     print("Recommendations DataFrame:", recommendations)
     print("----- Exiting get_recommendations -----")
     return recommendations
-
 
 @app.route('/')
 def index():
