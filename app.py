@@ -36,33 +36,15 @@ def download_model_files_from_s3():
 # Download model files from S3
 download_model_files_from_s3()
 
-# Initialize model variables as None
-similarity_matrix = None
-feature_columns = None
-fragrance_features = None
-df = None
-label_encoder = None
-
-def load_models():
-    """Loads models only when needed."""
-    global similarity_matrix, feature_columns, fragrance_features, df, label_encoder
-    try:
-        similarity_matrix = joblib.load(os.path.join(LOCAL_MODEL_PATH, "similarity_matrix.joblib"))
-        feature_columns = joblib.load(os.path.join(LOCAL_MODEL_PATH, "feature_columns.joblib"))
-        fragrance_features = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_features.joblib"))
-        df = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_data.joblib"))
-        label_encoder = joblib.load(os.path.join(LOCAL_MODEL_PATH, "label_encoder.joblib"))
-        print("Models loaded successfully.")
-    except Exception as e:
-        print(f"Error loading models: {e}")
+# Load model data
+similarity_matrix = joblib.load(os.path.join(LOCAL_MODEL_PATH, "similarity_matrix.joblib"))
+feature_columns = joblib.load(os.path.join(LOCAL_MODEL_PATH, "feature_columns.joblib"))
+fragrance_features = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_features.joblib"))
+df = joblib.load(os.path.join(LOCAL_MODEL_PATH, "fragrance_data.joblib"))
+label_encoder = joblib.load(os.path.join(LOCAL_MODEL_PATH, "label_encoder.joblib"))
 
 # Recommendation function
 def get_recommendations(user_preferences, disliked_notes_indices, df, similarity_matrix, fragrance_features, top_n=5):
-
-    # Load models if not already loaded
-    if similarity_matrix is None: 
-        load_models()
-
     print("----- Inside get_recommendations -----")
     print("User Preferences:", user_preferences)
 
@@ -98,9 +80,6 @@ def get_recommendations(user_preferences, disliked_notes_indices, df, similarity
 
 @app.route('/')
 def index():
-    # Load models if not already loaded (for initial page load)
-    if feature_columns is None:
-        load_models()
     return render_template('index.html', feature_columns=feature_columns)
 
 @app.route('/about')
@@ -170,6 +149,7 @@ def recommend():
         print(f"Error in recommend route: {e}")
         return jsonify({"error": "An error occurred"}), 500
 
+
 @app.route('/select2-data')
 def select2_data():
     notes_data = []
@@ -187,3 +167,5 @@ def select2_data():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Use the port provided by Railway
     app.run(host='0.0.0.0', port=port)
+
+
