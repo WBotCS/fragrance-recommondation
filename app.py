@@ -20,7 +20,7 @@ MODEL_FILES = {
 LOCAL_MODEL_PATH = 'models/'  # Local directory to save model files
 
 def download_model_files_from_s3():
-    """Download required model files from S3 if not present locally."""
+    """Download and cache model files from S3 if not present."""
     s3 = boto3.client('s3')
     os.makedirs(LOCAL_MODEL_PATH, exist_ok=True)
     
@@ -28,8 +28,12 @@ def download_model_files_from_s3():
         local_file_path = os.path.join(LOCAL_MODEL_PATH, f"{file_name}.joblib")
         if not os.path.exists(local_file_path):
             print(f"Downloading {file_name} from S3...")
-            s3.download_file(S3_BUCKET, s3_key, local_file_path)
-            print(f"{file_name} downloaded successfully.")
+            try:
+                s3.download_file(S3_BUCKET, s3_key, local_file_path)
+                print(f"{file_name} downloaded successfully.")
+            except Exception as e:
+                print(f"Error downloading {file_name}: {e}")
+
 
 # Download model files from S3
 download_model_files_from_s3()
