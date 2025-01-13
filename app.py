@@ -5,8 +5,6 @@ import pandas as pd
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 from sklearn.metrics.pairwise import cosine_similarity
-import cProfile  # Import cProfile for profiling
-import pstats    # Import pstats for analyzing profiling results
 
 app = Flask(__name__)
 
@@ -166,18 +164,5 @@ def select2_data():
     return jsonify({'notes': notes_data, 'families': families_data})
 
 if __name__ == '__main__':
-    profiler = cProfile.Profile()
-    profiler.enable()
-
-    # Simulate a user request to profile (replace with realistic user input)
-    user_preferences = np.array([1, 0, 0, ...])  # Example user preferences
-    get_recommendations(user_preferences, None, df, similarity_matrix, fragrance_features)
-
-    profiler.disable()
-    stats = pstats.Stats(profiler).sort_stats('cumtime')
-    stats.print_stats() 
-
-    # Start the Flask app (this should be after the profiling code)
     port = int(os.environ.get('PORT', 5000))  # Use the port provided by Railway
-    app.run(host='0.0.0.0', port=port)
-
+    app.run(host='0.0.0.0', port=port, debug=True)
