@@ -114,7 +114,7 @@ def recommend():
             print(f"Warning: Note '{note}' not found in feature columns.")
 
     for family in user_input['preferred_families']:
-        family_with_prefix = "family_" + family.lower()
+        family_with_prefix = "family_" + family.lower().strip()
         if family_with_prefix in feature_columns:
             print("Adding family:", family_with_prefix)
             user_preferences[feature_columns.index(family_with_prefix)] = 1
